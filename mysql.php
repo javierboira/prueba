@@ -15,7 +15,7 @@ header('Content-type: text/csv');
       // aquí debemos hacer una consulta anterior para poder colocar el valor del id  y guardarlo en $idok
       //como tenemos ya el objeto-conexión-sql $conn funcionando, lo usamos para la consulta (objeto-consulta $r1)
     $r1=$conn->query("Select id from mantenimiento where id=(select max(id) from mantenimiento");   //rellenar el interior de las comillas y seguir a partir de aquí.........
-    if (strlen(stristr($Consulta,"SELECT"))>0) {                                     
+    if (strlen(stristr($Consulta,"SELECT"))>0) {    //este if no tiene ningún sentido *************************                                 
         $idok = '';                                                                    
         $r1->data_seek(0);
         while($row = $r1->fetch_assoc()){
@@ -25,7 +25,7 @@ header('Content-type: text/csv');
           $idok = rtrim($idok, ",");
         }
         $idok=$idok+1;                                                               
-      }           
+      }                                            // hasta aquí*******************************
     $query = "INSERT INTO mantenimiento VALUES ('";
     $query.= $idok;                                     // ojo, este es el nuevo !!!! 
     $query.="','";
